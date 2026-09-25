@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura & Belleza | Centro de Estética Femenina</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        pastelPink: {
+                            50: '#fdf2f4',
+                            100: '#fbe8ec',
+                            200: '#f7d5dc',
+                            300: '#f2b4c1',
+                            400: '#ea849b',
+                            500: '#e05978',
+                            600: '#cc385b',
+                        },
+                        softGold: {
+                            100: '#fdfbf7',
+                            200: '#f7efe1',
+                            300: '#edd8b7',
+                            400: '#e3c18c',
+                            500: '#c59b57',
+                            600: '#a37c3f',
+                        },
+                        darkNeo: {
+                            900: '#0f0e13',
+                            800: '#191722',
+                            700: '#262233',
+                            600: '#38324a'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, .font-serif { font-family: 'Playfair Display', serif; }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        .dark ::-webkit-scrollbar-track { background: #191722; }
+        ::-webkit-scrollbar-thumb { background: #e05978; border-radius: 4px; }
+    </style>
+</head>
+<body class="bg-pastelPink-50 text-gray-800 dark:bg-darkNeo-900 dark:text-gray-100 transition-colors duration-300">
+
+    <!-- HEADER & NAVIGATION -->
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-white/80 dark:bg-darkNeo-800/80 border-b border-pastelPink-200 dark:border-darkNeo-700 shadow-sm transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-2 group">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-pastelPink-400 to-softGold-500 flex items-center justify-center text-white shadow-md group-hover:scale-105 transition">
+                    <i class="fa-solid fa-spa text-lg"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-serif font-bold tracking-wide bg-gradient-to-r from-pastelPink-500 to-softGold-500 bg-clip-text text-transparent">Aura & Belleza</span>
+                    <span class="block text-[10px] tracking-widest text-gray-500 dark:text-gray-400 uppercase">Centro Estético</span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                <a href="#inicio" class="hover:text-pastelPink-500 transition">Inicio</a>
+                <a href="#servicios" class="hover:text-pastelPink-500 transition">Servicios</a>
+                <a href="#galeria" class="hover:text-pastelPink-500 transition">Galería</a>
+                <a href="#opiniones" class="hover:text-pastelPink-500 transition">Opiniones</a>
+                <a href="#contacto" class="hover:text-pastelPink-500 transition">Ubicación</a>
+            </nav>
+
+            <!-- Actions & CTA -->
+            <div class="flex items-center gap-3">
+                <!-- Dark Mode Toggle -->
+                <button onclick="toggleDarkMode()" aria-label="Cambiar modo oscuro" class="p-2.5 rounded-full hover:bg-pastelPink-100 dark:hover:bg-darkNeo-700 text-gray-600 dark:text-gray-300 transition">
+                    <i id="themeIcon" class="fa-solid fa-moon text-lg"></i>
+                </button>
+
+                <!-- Owner Access Button -->
+                <button onclick="openOwnerLogin()" class="hidden sm:flex items-center gap-1.5 text-xs font-medium px-3 py-2 rounded-full border border-softGold-400 text-softGold-600 dark:text-softGold-300 hover:bg-softGold-50 dark:hover:bg-darkNeo-700 transition">
+                    <i class="fa-solid fa-lock text-[10px]"></i> Propietario
+                </button>
+
+                <!-- Book Appointment CTA -->
+                <button onclick="openBookingModal()" class="bg-gradient-to-r from-pastelPink-500 to-pastelPink-600 text-white font-medium px-5 py-2.5 rounded-full shadow-md hover:shadow-lg hover:from-pastelPink-600 hover:to-pastelPink-700 transition transform hover:-translate-y-0.5 text-sm">
+                    <i class="fa-regular fa-calendar-check mr-1.5"></i> Reservar Cita
+                </button>
+
+                <!-- Mobile Menu Button -->
+                <button onclick="toggleMobileMenu()" aria-label="Abrir menú" class="md:hidden p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-pastelPink-100 dark:hover:bg-darkNeo-700">
+                    <i id="mobileMenuIcon" class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Drawer -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white dark:bg-darkNeo-800 border-b border-pastelPink-200 dark:border-darkNeo-700 px-6 py-4 space-y-3 transition-colors">
+            <a href="#inicio" onclick="toggleMobileMenu()" class="block font-medium py-1 hover:text-pastelPink-500">Inicio</a>
+            <a href="#servicios" onclick="toggleMobileMenu()" class="block font-medium py-1 hover:text-pastelPink-500">Servicios</a>
+            <a href="#galeria" onclick="toggleMobileMenu()" class="block font-medium py-1 hover:text-pastelPink-500">Galería</a>
+            <a href="#opiniones" onclick="toggleMobileMenu()" class="block font-medium py-1 hover:text-pastelPink-500">Opiniones</a>
+            <a href="#contacto" onclick="toggleMobileMenu()" class="block font-medium py-1 hover:text-pastelPink-500">Ubicación y Contacto</a>
+            <button onclick="openOwnerLogin(); toggleMobileMenu();" class="w-full text-left font-medium py-2 text-softGold-600 dark:text-softGold-300 border-t border-gray-100 dark:border-darkNeo-700 flex items-center gap-2">
+                <i class="fa-solid fa-lock"></i> Acceso Propietario
+            </button>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="inicio" class="relative overflow-hidden pt-12 pb-20 lg:pt-20 lg:pb-32 bg-gradient-to-b from-pastelPink-100/50 to-transparent dark:from-darkNeo-800 dark:to-darkNeo-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <!-- Text Content -->
+            <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-pastelPink-200/70 dark:bg-darkNeo-700 text-pastelPink-600 dark:text-pastelPink-300 text-xs font-semibold tracking-wide uppercase">
+                    <i class="fa-solid fa-sparkles"></i> Tu refugio de belleza y bienestar
+                </div>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold leading-tight">
+                    Resalta tu belleza natural con <span class="bg-gradient-to-r from-pastelPink-500 to-softGold-500 bg-clip-text text-transparent">elegancia</span>
+                </h1>
+                <p class="text-lg text-gray-600 dark:text-gray-300 max-w-xl mx-auto lg:mx-0">
+                    Disfruta de tratamientos exclusivos para el cuidado del cabello, pestañas, cejas, uñas y rejuvenecimiento facial en un ambiente de lujo y absoluta relajación.
+                </p>
+                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                    <button onclick="openBookingModal()" class="w-full sm:w-auto bg-gradient-to-r from-pastelPink-500 to-pastelPink-600 text-white font-medium px-8 py-3.5 rounded-full shadow-lg hover:shadow-xl transition transform hover:-translate-y-0.5 text-center">
+                        Reservar Cita Ahora
+                    </button>
+                    <a id="whatsappHeroBtn" href="https://wa.me/1234567890?text=Hola,%20quisiera%20más%20información%20sobre%20sus%20servicios%20de%20estética." target="_blank" class="w-full sm:w-auto border border-pastelPink-300 dark:border-darkNeo-600 hover:border-pastelPink-500 font-medium px-8 py-3.5 rounded-full transition flex items-center justify-center gap-2 bg-white/50 dark:bg-darkNeo-800">
+                        <i class="fa-brands fa-whatsapp text-green-500 text-xl"></i> Chat por WhatsApp
+                    </a>
+                </div>
+
+                <!-- Live Status Card (Floating) -->
+                <div class="pt-6 flex items-center justify-center lg:justify-start">
+                    <div id="statusCard" class="inline-flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-white dark:bg-darkNeo-800 border border-pastelPink-200 dark:border-darkNeo-700 shadow-sm text-sm">
+                        <span id="statusIndicator" class="relative flex h-3 w-3">
+                            <span id="statusPing" class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                            <span id="statusDot" class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                        </span>
+                        <div class="text-left">
+                            <p id="statusText" class="font-medium text-gray-900 dark:text-gray-100 text-xs">Abierto Ahora</p>
+                            <p id="statusHours" class="text-[11px] text-gray-500 dark:text-gray-400">Lun - Sáb: 9:00 AM - 8:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero Image Banner -->
+            <div class="lg:col-span-5 relative flex justify-center">
+                <div class="relative w-full max-w-md aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border-4 border-white dark:border-darkNeo-700">
+                    <img src="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?auto=format&fit=crop&w=800&q=80" alt="Centro de Estética Femenina" class="w-full h-full object-cover transform hover:scale-105 transition duration-700" onerror="this.src='https://placehold.co/600x800/fbe8ec/e05978?text=Aura+%26+Belleza'">
+                    <!-- Floating badge -->
+                    <div class="absolute bottom-6 left-6 right-6 p-4 rounded-2xl bg-white/90 dark:bg-darkNeo-800/90 backdrop-blur-md border border-pastelPink-200 dark:border-darkNeo-700 shadow-lg flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-softGold-100 dark:bg-darkNeo-700 flex items-center justify-center text-softGold-500">
+                            <i class="fa-solid fa-award"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs font-semibold text-gray-900 dark:text-gray-100">Especialistas Certificadas</p>
+                            <p class="text-[10px] text-gray-500 dark:text-gray-400">Productos premium y técnicas vanguardistas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES & PRICING MENU -->
+    <section id="servicios" class="py-20 bg-white dark:bg-darkNeo-800/50 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
+                <h2 class="text-3xl sm:text-4xl font-serif font-bold">Nuestros Servicios & Tarifas</h2>
+                <p class="text-gray-600 dark:text-gray-300 text-sm">Explora nuestra carta de tratamientos diseñados para realzar tu brillo único.</p>
+                
+                <!-- Category Tabs -->
+                <div id="serviceTabs" class="flex flex-wrap items-center justify-center gap-2 pt-4">
+                    <button onclick="filterServices('todos')" class="tab-btn active px-4 py-2 rounded-full text-xs font-semibold transition bg-pastelPink-500 text-white shadow-sm">Todos</button>
+                    <button onclick="filterServices('cabello')" class="tab-btn px-4 py-2 rounded-full text-xs font-semibold transition bg-gray-100 dark:bg-darkNeo-700 hover:bg-pastelPink-100 dark:hover:bg-darkNeo-600 text-gray-700 dark:text-gray-300">Cabello</button>
+                    <button onclick="filterServices('uñas')" class="tab-btn px-4 py-2 rounded-full text-xs font-semibold transition bg-gray-100 dark:bg-darkNeo-700 hover:bg-pastelPink-100 dark:hover:bg-darkNeo-600 text-gray-700 dark:text-gray-300">Uñas</button>
+                    <button onclick="filterServices('pestañas')" class="tab-btn px-4 py-2 rounded-full text-xs font-semibold transition bg-gray-100 dark:bg-darkNeo-700 hover:bg-pastelPink-100 dark:hover:bg-darkNeo-600 text-gray-700 dark:text-gray-300">Pestañas & Cejas</button>
+                    <button onclick="filterServices('facial')" class="tab-btn px-4 py-2 rounded-full text-xs font-semibold transition bg-gray-100 dark:bg-darkNeo-700 hover:bg-pastelPink-100 dark:hover:bg-darkNeo-600 text-gray-700 dark:text-gray-300">Cuidado Facial</button>
+                    <button onclick="filterServices('maquillaje')" class="tab-btn px-4 py-2 rounded-full text-xs font-semibold transition bg-gray-100 dark:bg-darkNeo-700 hover:bg-pastelPink-100 dark:hover:bg-darkNeo-600 text-gray-700 dark:text-gray-300">Maquillaje</button>
+                </div>
+            </div>
+
+            <!-- Dynamic Services Grid -->
+            <div id="servicesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Populated dynamically via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY & PORTFOLIO -->
+    <section id="galeria" class="py-20 bg-pastelPink-50/50 dark:bg-darkNeo-900 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
+                <h2 class="text-3xl sm:text-4xl font-serif font-bold">Galería de Trabajos</h2>
+                <p class="text-gray-600 dark:text-gray-300 text-sm">Un vistazo a nuestros resultados reales y transformaciones.</p>
+                
+                <!-- Gallery Filters -->
+                <div class="flex flex-wrap items-center justify-center gap-2 pt-2">
+                    <button onclick="filterGallery('todos')" class="gal-tab-btn active px-3.5 py-1.5 rounded-full text-xs font-semibold transition bg-pastelPink-500 text-white shadow-sm">Todas</button>
+                    <button onclick="filterGallery('uñas')" class="gal-tab-btn px-3.5 py-1.5 rounded-full text-xs font-semibold transition bg-white dark:bg-darkNeo-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-darkNeo-700">Uñas</button>
+                    <button onclick="filterGallery('cabello')" class="gal-tab-btn px-3.5 py-1.5 rounded-full text-xs font-semibold transition bg-white dark:bg-darkNeo-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-darkNeo-700">Cabello</button>
+                    <button onclick="filterGallery('pestañas')" class="gal-tab-btn px-3.5 py-1.5 rounded-full text-xs font-semibold transition bg-white dark:bg-darkNeo-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-darkNeo-700">Pestañas</button>
+                    <button onclick="filterGallery('facial')" class="gal-tab-btn px-3.5 py-1.5 rounded-full text-xs font-semibold transition bg-white dark:bg-darkNeo-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-darkNeo-700">Facial</button>
+                </div>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div id="galleryGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Populated dynamically via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS / REVIEWS -->
+    <section id="opiniones" class="py-20 bg-white dark:bg-darkNeo-800/50 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
+                <h2 class="text-3xl sm:text-4xl font-serif font-bold">Lo que dicen nuestras clientas</h2>
+                <p class="text-gray-600 dark:text-gray-300 text-sm">La satisfacción y confianza de quienes nos visitan es nuestra mejor carta de presentación.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Review 1 -->
+                <div class="p-6 rounded-3xl bg-pastelPink-50/50 dark:bg-darkNeo-800 border border-pastelPink-200 dark:border-darkNeo-700 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-1 text-softGold-500 mb-4">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-300 italic mb-6">"¡Me encantó el resultado de mis uñas acrílicas y el diseño! La atención es súper cálida y el salón es bellísimo. Definitivamente volveré."</p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-pastelPink-200 flex items-center justify-center font-bold text-pastelPink-600">CM</div>
+                        <div>
+                            <h4 class="font-semibold text-sm">Camila Morales</h4>
+                            <p class="text-[11px] text-gray-500 dark:text-gray-400">Cliente Frecuente</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="p-6 rounded-3xl bg-pastelPink-50/50 dark:bg-darkNeo-800 border border-pastelPink-200 dark:border-darkNeo-700 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-1 text-softGold-500 mb-4">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-300 italic mb-6">"El lifting de pestañas superó mis expectativas. Quedaron naturales y duraderas. El personal es muy profesional y cuidan cada detalle."</p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-softGold-200 flex items-center justify-center font-bold text-softGold-600">VS</div>
+                        <div>
+                            <h4 class="font-semibold text-sm">Valeria Soto</h4>
+                            <p class="text-[11px] text-gray-500 dark:text-gray-400">Cliente Frecuente</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="p-6 rounded-3xl bg-pastelPink-50/50 dark:bg-darkNeo-800 border border-pastelPink-200 dark:border-darkNeo-700 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-1 text-softGold-500 mb-4">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-300 italic mb-6">"Me hice la limpieza facial profunda y la hidratación. Mi piel quedó radiante y luminosa. Recomiendo este centro con los ojos cerrados."</p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-pastelPink-300 flex items-center justify-center font-bold text-white">DP</div>
+                        <div>
+                            <h4 class="font-semibold text-sm">Daniela Pardo</h4>
+                            <p class="text-[11px] text-gray-500 dark:text-gray-400">Cliente Nueva</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOCATION & CONTACT -->
+    <section id="contacto" class="py-20 bg-pastelPink-50/50 dark:bg-darkNeo-900 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <div class="space-y-3">
+                        <h2 class="text-3xl sm:text-4xl font-serif font-bold">Ubicación & Contacto</h2>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">Visítanos y vive una experiencia de belleza inigualable en nuestro salón principal.</p>
+                    </div>
+
+                    <div class="space-y-4 text-sm">
+                        <div class="flex items-start gap-4 p-4 rounded-2xl bg-white dark:bg-darkNeo-800 border border-pastelPink-200 dark:border-darkNeo-700">
+                            <div class="w-10 h-10 rounded-full bg-pastelPink-100 dark:bg-darkNeo-700 text-pastelPink-500 flex items-center justify-center flex-shrink-0">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 dark:text-gray-100">Dirección Exacta</h4>
+                                <p id="infoAddress" class="text-gray-500 dark:text-gray-400 text-xs mt-0.5">Calle 50 # 15-22, Local 3, Centro Comercial Bella Plaza, Ciudad</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-4 rounded-2xl bg-white dark:bg-darkNeo-800 border border-pastelPink-200 dark:border-darkNeo-700">
+                            <div class="w-10 h-10 rounded-full bg-pastelPink-100 dark:bg-darkNeo-700 text-pastelPink-500 flex items-center justify-center flex-shrink-0">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 dark:text-gray-100">Teléfono & WhatsApp</h4>
+                                <p id="infoPhone" class="text-gray-500 dark:text-gray-400 text-xs mt-0.5">+1 (555) 389-2211</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-4 rounded-2xl bg-white dark:bg-darkNeo-800 border border-pastelPink-200 dark:border-darkNeo-700">
+                            <div class="w-10 h-10 rounded-full bg-pastelPink-100 dark:bg-darkNeo-700 text-pastelPink-500 flex items-center justify-center flex-shrink-0">
+                                <i class="fa-solid fa-clock"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 dark:text-gray-100">Horarios de Atención</h4>
+                                <p id="infoSchedule" class="text-gray-500 dark:text-gray-400 text-xs mt-0.5">Lunes a Sábado: 9:00 AM - 8:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Social Media Links -->
+                    <div class="flex items-center gap-3 pt-2">
+                        <a href="https://instagram.com" target="_blank" class="w-10 h-10 rounded-full bg-white dark:bg-darkNeo-800 border border-pastelPink-200 dark:border-darkNeo-700 text-gray-700 dark:text-gray-300 hover:text-pastelPink-500 flex items-center justify-center transition shadow-sm">
+                            <i class="fa-brands fa-instagram text-lg"></i>
+                        </a>
+                        <a href="https://tiktok.com" target="_blank" class="w-10 h-10 rounded-full bg-white dark:bg-darkNeo-800 border border-pastelPink-200 dark:border-darkNeo-700 text-gray-700 dark:text-gray-300 hover:text-pastelPink-500 flex items-center justify-center transition shadow-sm">
+                            <i class="fa-brands fa-tiktok text-lg"></i>
+                        </a>
+                        <a id="whatsappContactBtn" href="https://wa.me/15553892211" target="_blank" class="w-10 h-10 rounded-full bg-white dark:bg-darkNeo-800 border border-pastelPink-200 dark:border-darkNeo-700 text-gray-700 dark:text-gray-300 hover:text-green-500 flex items-center justify-center transition shadow-sm">
+                            <i class="fa-brands fa-whatsapp text-lg"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Google Maps iframe -->
+                <div class="w-full h-[400px] rounded-3xl overflow-hidden shadow-lg border-4 border-white dark:border-darkNeo-800">
+                    <iframe class="w-full h-full border-0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387190.2799160891!2d-74.25987368715491!3d40.69767006782373!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNueva%20York%2C%20EE.%20UU.!5e0!3m2!1ses!2sco!4v1650000000000!5m2!1ses!2sco" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-white dark:bg-darkNeo-800 border-t border-pastelPink-200 dark:border-darkNeo-700 py-10 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-500 dark:text-gray-400">
+            <p>&copy; 2026 Aura & Belleza Centro Estético. Todos los derechos reservados.</p>
+            <div class="flex items-center gap-6">
+                <a href="#" class="hover:text-pastelPink-500">Política de Privacidad</a>
+                <a href="#" class="hover:text-pastelPink-500">Términos de Servicio</a>
+                <button onclick="openOwnerLogin()" class="hover:text-softGold-500 font-medium">Panel Propietario</button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- BOOKING MODAL -->
+    <div id="bookingModal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white dark:bg-darkNeo-800 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-pastelPink-200 dark:border-darkNeo-700 relative animate-in fade-in zoom-in duration-200 my-8">
+            <button onclick="closeBookingModal()" class="absolute top-6 right-6 w-8 h-8 rounded-full bg-gray-100 dark:bg-darkNeo-700 hover:bg-pastelPink-200 flex items-center justify-center text-gray-500 dark:text-gray-300 transition">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="mb-6">
+                <span class="text-xs font-semibold text-pastelPink-500 uppercase tracking-wider">Agenda Tu Espacio</span>
+                <h3 class="text-2xl font-serif font-bold mt-1">Reserva Online</h3>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Selecciona tus preferencias y nos pondremos en contacto para confirmar.</p>
+            </div>
+
+            <form id="bookingForm" onsubmit="submitBooking(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold mb-1.5 text-gray-700 dark:text-gray-300">Seleccionar Servicio</label>
+                    <select id="bookingService" required class="w-full text-sm rounded-xl border border-gray-200 dark:border-darkNeo-700 bg-pastelPink-50/50 dark:bg-darkNeo-900 px-4 py-2.5 focus:outline-none focus:border-pastelPink-500">
+                        <!-- Options populated dynamically -->
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold mb-1.5 text-gray-700 dark:text-gray-300">Especialista Preferida</label>
+                    <select id="bookingSpecialist" class="w-full text-sm rounded-xl border border-gray-200 dark:border-darkNeo-700 bg-pastelPink-50/50 dark:bg-darkNeo-900 px-4 py-2.5 focus:outline-none focus:border-pastelPink-500">
+                        <option value="Cualquiera disponible">Cualquiera disponible</option>
+                        <option value="Sofía R. (Esteticista Senior)">Sofía R. (Esteticista Senior)</option>
+                        <option value="Valentina M. (Especialista Nails)">Valentina M. (Especialista Nails)</option>
+                        <option value="Camila G. (Maquilladora & Lashista)">Camila G. (Maquilladora & Lashista)</option>
+                    </select>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold mb-1.5 text-gray-700 dark:text-gray-300">Fecha Deseada</label>
+                        <input type="date" id="bookingDate" required class="w-full text-sm rounded-xl border border-gray-200 dark:border-darkNeo-700 bg-pastelPink-50/50 dark:bg-darkNeo-900 px-4 py-2.5 focus:outline-none focus:border-pastelPink-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold mb-1.5 text-gray-700 dark:text-gray-300">Hora</label>
+                        <select id="bookingTime" required class="w-full text-sm rounded-xl border border-gray-200 dark:border-darkNeo-700 bg-pastelPink-50/50 dark:bg-darkNeo-900 px-4 py-2.5 focus:outline-none focus:border-pastelPink-500">
+                            <option value="09:00 AM">09:00 AM</option>
+                            <option value="10:30 AM">10:30 AM</option>
+                            <option value="12:00 PM">12:00 PM</option>
+                            <option value="02:00 PM">02:00 PM</option>
+                            <option value="03:30 PM">03:30 PM</option>
+                            <option value="05:00 PM">05:00 PM</option>
+                            <option value="06:30 PM">06:30 PM</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold mb-1.5 text-gray-700 dark:text-gray-300">Nombre Completo</label>
+                    <input type="text" id="clientName" required placeholder="Ej. Ana María Gómez" class="w-full text-sm rounded-xl border border-gray-200 dark:border-darkNeo-700 bg-pastelPink-50/50 dark:bg-darkNeo-900 px-4 py-2.5 focus:outline-none focus:border-pastelPink-500">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold mb-1.5 text-gray-700 dark:text-gray-300">Teléfono / WhatsApp</label>
+                    <input type="tel" id="clientPhone" required placeholder="Ej. +1 555 000 1111" class="w-full text-sm rounded-xl border border-gray-200 dark:border-darkNeo-700 bg-pastelPink-50/50 dark:bg-darkNeo-900 px-4 py-2.5 focus:outline-none focus:border-pastelPink-500">
+                </div>
+
+                <button type="submit" class="w-full mt-2 bg-gradient-to-r from-pastelPink-500 to-pastelPink-600 text-white font-medium py-3 rounded-xl shadow-md hover:shadow-lg hover:from-pastelPink-600 hover:to-pastelPink-700 transition text-sm">
+                    Confirmar Reserva
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- GALLERY LIGHTBOX MODAL -->
+    <div id="lightboxModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+        <button onclick="closeLightbox()" class="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition text-lg">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="max-w-4xl w-full max-h-[85vh] flex flex-col items-center">
+            <img id="lightboxImg" src="" alt="Trabajo Ampliado" class="max-h-[75vh] max-w-full rounded-2xl object-contain shadow-2xl">
+            <p id="lightboxCaption" class="text-white text-sm mt-4 font-medium tracking-wide"></p>
+        </div>
+    </div>
+
+    <!-- OWNER LOGIN MODAL -->
+    <div id="ownerLoginModal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-darkNeo-800 rounded-3xl max-w-sm w-full p-6 sm:p-8 shadow-2xl border border-pastelPink-200 dark:border-darkNeo-700 relative">
+            <button onclick="closeOwnerLogin()" class="absolute top-6 right-6 w-8 h-8 rounded-full bg-gray-100 dark:bg-darkNeo-700 hover:bg-pastelPink-200 flex items-center justify-center text-gray-500 dark:text-gray-300 transition">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="text-center mb-6">
+                <div class="w-12 h-12 rounded-full bg-softGold-100 dark:bg-darkNeo-700 text-softGold-500 flex items-center justify-center mx-auto mb-3">
+                    <i class="fa-solid fa-lock text-xl"></i>
+                </div>
+                <h3 class="text-xl font-serif font-bold">Acceso Propietario</h3>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Ingrese su contraseña PIN para administrar el salón.</p>
+            </div>
+            <form onsubmit="handleOwnerLogin(event)" class="space-y-4">
+                <div>
+                    <input type="password" id="ownerPin" required placeholder="PIN (ej. 1234)" class="w-full text-center text-lg tracking-widest rounded-xl border border-gray-200 dark:border-darkNeo-700 bg-pastelPink-50/50 dark:bg-darkNeo-900 px-4 py-3 focus:outline-none focus:border-softGold-500">
+                </div>
+                <button type="submit" class="w-full bg-gradient-to-r from-softGold-500 to-softGold-600 text-white font-medium py-3 rounded-xl shadow-md hover:shadow-lg transition text-sm">
+                    Ingresar al Panel
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- OWNER DASHBOARD MODAL -->
+    <div id="ownerDashboardModal" class="fixed inset-0 z-50 hidden bg-black/70 backdrop-blur-md flex items-center justify-center p-2 sm:p-6 overflow-y-auto">
+        <div class="bg-white dark:bg-darkNeo-800 rounded-3xl max-w-5xl w-full max-h-[90vh] flex flex-col shadow-2xl border border-pastelPink-200 dark:border-darkNeo-700 overflow-hidden my-auto">
+            <!-- Dashboard Header -->
+            <div class="px-6 py-4 bg-pastelPink-100 dark:bg-darkNeo-700 border-b border-pastelPink-200 dark:border-darkNeo-600 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-softGold-500 text-white flex items-center justify-center">
+                        <i class="fa-solid fa-crown"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-serif font-bold text-lg">Panel de Administración</h3>
+                        <p class="text-xs text-gray-500 dark:text-gray-300">Gestión en tiempo real de Aura & Belleza</p>
+                    </div>
+                </div>
+                <button onclick="closeOwnerDashboard()" class="w-9 h-9 rounded-full bg-white dark:bg-darkNeo-800 hover:bg-pastelPink-200 flex items-center justify-center text-gray-600 dark:text-gray-300 transition">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Dashboard Navigation Tabs -->
+            <div class="flex border-b border-gray-200 dark:border-darkNeo-700 bg-gray-50 dark:bg-darkNeo-900 px-6 gap-6 text-xs font-semibold overflow-x-auto">
+                <button onclick="switchDashTab('citas')" id="dashTabCitas" class="py-3 border-b-2 border-pastelPink-500 text-pastelPink-600 dark:text-pastelPink-400 whitespace-nowrap">Registro de Citas</button>
+                <button onclick="switchDashTab('servicios')" id="dashTabServicios" class="py-3 border-b-2 border-transparent text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 whitespace-nowrap">Gestionar Servicios</button>
+                <button onclick="switchDashTab('galeria')" id="dashTabGaleria" class="py-3 border-b-2 border-transparent text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 whitespace-nowrap">Gestionar Galería</button>
+                <button onclick="switchDashTab('ajustes')" id="dashTabAjustes" class="py-3 border-b-2 border-transparent text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 whitespace-nowrap">Horarios & Contacto</button>
+            </div>
+
+            <!-- Dashboard Content Body -->
+            <div class="p-6 overflow-y-auto flex-1 space-y-6">
+                <!-- Tab 1: Citas -->
+                <div id="dashContentCitas" class="dash-tab-content space-y-4">
+                    <div class="flex items-center justify-between">
+                        <h4 class="font-bold text-sm">Citas Recibidas</h4>
+                        <span id="citasCountBadge" class="text-xs px-2.5 py-1 rounded-full bg-pastelPink-100 text-pastelPink-600 font-semibold">0 citas</span>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs">
+                            <thead class="bg-gray-100 dark:bg-darkNeo-700 text-gray-600 dark:text-gray-300 uppercase">
+                                <tr>
+                                    <th class="p-3 rounded-l-xl">Cliente</th>
+                                    <th class="p-3">Servicio</th>
+                                    <th class="p-3">Especialista</th>
+                                    <th class="p-3">Fecha y Hora</th>
+                                    <th class="p-3">Teléfono</th>
+                                    <th class="p-3 rounded-r-xl">Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody id="dashCitasTableBody" class="divide-y divide-gray-100 dark:divide-darkNeo-700">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Tab 2: Servicios -->
+                <div id="dashContentServicios" class="dash-tab-content hidden space-y-6">
+                    <div class="p-4 rounded-2xl bg-pastelPink-50/50 dark:bg-darkNeo-900 border border-pastelPink-200 dark:border-darkNeo-700 space-y-3">
+                        <h4 class="font-bold text-sm">Agregar Nuevo Servicio</h4>
+                        <form onsubmit="addNewService(event)" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+                            <input type="text" id="newServName" required placeholder="Nombre" class="text-xs rounded-xl border border-gray-200 dark:border-darkNeo-700 bg-white dark:bg-darkNeo-800 px-3 py-2">
+                            <select id="newServCat" class="text-xs rounded-xl border border-gray-200 dark:border-darkNeo-700 bg-white dark:bg-darkNeo-800 px-3 py-2">
+                                <option value="cabello">Cabello</option>
+                                <option value="uñas">Uñas</option>
+                                <option value="pestañas">Pestañas</option>
+                                <option value="facial">Facial</option>
+                                <option value="maquillaje">Maquillaje</option>
+                            </select>
+                            <input type="text" id="newServPrice" required placeholder="Precio (ej. $45)" class="text-xs rounded-xl border border-gray-200 dark:border-darkNeo-700 bg-white dark:bg-darkNeo-800 px-3 py-2">
+                            <input type="text" id="newServTime" required placeholder="Duración (ej. 45 min)" class="text-xs rounded-xl border border-gray-200 dark:border-darkNeo-700 bg-white dark:bg-darkNeo-800 px-3 py-2">
+                            <button type="submit" class="bg-pastelPink-500 hover:bg-pastelPink-600 text-white font-medium text-xs rounded-xl py-2 px-4 shadow">Añadir</button>
+                        </form>
+                    </div>
+
+                    <div class="space-y-3">
+                        <h4 class="font-bold text-sm">Servicios Activos</h4>
+                        <div id="dashServicesList" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 3: Galería -->
+                <div id="dashContentGaleria" class="dash-tab-content hidden space-y-6">
+                    <div class="p-4 rounded-2xl bg-pastelPink-50/50 dark:bg-darkNeo-900 border border-pastelPink-200 dark:border-darkNeo-700 space-y-3">
+                        <h4 class="font-bold text-sm">Agregar Imagen a Galería</h4>
+                        <form onsubmit="addNewGalleryItem(event)" class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <input type="url" id="newGalImgUrl" required placeholder="URL de la Imagen" class="text-xs rounded-xl border border-gray-200 dark:border-darkNeo-700 bg-white dark:bg-darkNeo-800 px-3 py-2">
+                            <select id="newGalCat" class="text-xs rounded-xl border border-gray-200 dark:border-darkNeo-700 bg-white dark:bg-darkNeo-800 px-3 py-2">
+                                <option value="uñas">Uñas</option>
+                                <option value="cabello">Cabello</option>
+                                <option value="pestañas">Pestañas</option>
+                                <option value="facial">Facial</option>
+                            </select>
+                            <button type="submit" class="bg-pastelPink-500 hover:bg-pastelPink-600 text-white font-medium text-xs rounded-xl py-2 px-4 shadow">Subir Foto</button>
+                        </form>
+                    </div>
+
+                    <div class="space-y-3">
+                        <h4 class="font-bold text-sm">Fotos en Portafolio</h4>
+                        <div id="dashGalleryGrid" class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 4: Ajustes (Horarios & Contacto) -->
+                <div id="dashContentAjustes" class="dash-tab-content hidden space-y-4">
+                    <h4 class="font-bold text-sm">Modificar Horarios y Contacto</h4>
+                    <form onsubmit="saveSettings(event)" class="space-y-4 max-w-lg">
+                        <div>
+                            <label class="block text-xs font-semibold mb-1 text-gray-700 dark:text-gray-300">Teléfono / WhatsApp de Contacto</label>
+                            <input type="text" id="settingPhone" required class="w-full text-xs rounded-xl border border-gray-200 dark:border-darkNeo-700 bg-pastelPink-50/50 dark:bg-darkNeo-900 px-4 py-2.5">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold mb-1 text-gray-700 dark:text-gray-300">Dirección</label>
+                            <input type="text" id="settingAddress" required class="w-full text-xs rounded-xl border border-gray-200 dark:border-darkNeo-700 bg-pastelPink-50/50 dark:bg-darkNeo-900 px-4 py-2.5">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold mb-1 text-gray-700 dark:text-gray-300">Horario de Atención Texto</label>
+                            <input type="text" id="settingScheduleText" required class="w-full text-xs rounded-xl border border-gray-200 dark:border-darkNeo-700 bg-pastelPink-50/50 dark:bg-darkNeo-900 px-4 py-2.5">
+                        </div>
+                        <button type="submit" class="bg-softGold-500 hover:bg-softGold-600 text-white font-medium text-xs rounded-xl py-2.5 px-6 shadow">Guardar Cambios</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CUSTOM NOTIFICATION POPUP -->
+    <div id="notificationToast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="px-5 py-3 rounded-2xl bg-gray-900 text-white dark:bg-white dark:text-gray-900 shadow-xl text-xs font-medium flex items-center gap-3">
+            <i id="toastIcon" class="fa-solid fa-circle-check text-green-400"></i>
+            <span id="toastMessage">Operación realizada con éxito</span>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        /* --- INITIAL DATA STATE --- */
+        let servicesData = [
+            { id: 1, name: "Balayage & Brillo Supreme", category: "cabello", desc: "Técnica de aclarado sutil con tratamiento hidratante profundo incluido.", price: "$120", time: "180 min" },
+            { id: 2, name: "Corte Estilizado & Brushing", category: "cabello", desc: "Corte personalizado según tu tipo de rostro y acabado con ondas o liso perfecto.", price: "$40", time: "60 min" },
+            { id: 3, name: "Manicura Acrílica con Diseño", category: "uñas", desc: "Uñas esculpidas en acrílico con esmaltado semipermanente y nail art exclusivo.", price: "$45", time: "90 min" },
+            { id: 4, name: "Pedicura Spa Relax", category: "uñas", desc: "Exfoliación, hidratación profunda, masaje relajante y esmaltado impecable.", price: "$35", time: "60 min" },
+            { id: 5, name: "Lifting de Pestañas + Tintura", category: "pestañas", desc: "Curvatura natural de tus pestañas desde la raíz con efecto de mayor longitud.", price: "$50", time: "60 min" },
+            { id: 6, name: "Diseño y Laminado de Cejas", category: "pestañas", desc: "Depilación con hilo o cera, diseño personalizado y laminado para fijación perfecta.", price: "$35", time: "45 min" },
+            { id: 7, name: "Limpieza Facial Profunda", category: "facial", desc: "Extracción de impurezas, peeling ultrasónico, mascarilla LED y hidratación.", price: "$65", time: "75 min" },
+            { id: 8, name: "Maquillaje Social & Glam", category: "maquillaje", desc: "Maquillaje profesional de alta duración adaptado para eventos y ocasiones especiales.", price: "$55", time: "60 min" }
+        ];
+
+        let galleryData = [
+            { id: 1, category: "uñas", url: "https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=600&q=80", caption: "Manicura acrílica nude con detalles dorados" },
+            { id: 2, category: "cabello", url: "https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=600&q=80", caption: "Balayage rubio cenizo con ondas suaves" },
+            { id: 3, category: "pestañas", url: "https://images.unsplash.com/photo-1583001931096-959e941a8f57?auto=format&fit=crop&w=600&q=80", caption: "Lifting de pestañas natural" },
+            { id: 4, category: "facial", url: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=600&q=80", caption: "Tratamiento facial hidratante y luminoso" },
+            { id: 5, category: "uñas", url: "https://images.unsplash.com/photo-1519014816548-bf5fe059798b?auto=format&fit=crop&w=600&q=80", caption: "Nail art minimalista elegante" },
+            { id: 6, category: "cabello", url: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80", caption: "Peinado de novia y ondas glam" },
+            { id: 7, category: "pestañas", url: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=600&q=80", caption: "Diseño y laminado de cejas HD" },
+            { id: 8, category: "facial", url: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80", caption: "Sesión de spa y relax facial" }
+        ];
+
+        let appointmentsData = [
+            { id: 1, client: "Sofía Martínez", service: "Manicura Acrílica con Diseño", specialist: "Valentina M.", date: "2026-06-15", time: "10:30 AM", phone: "+1 555 234 5678" },
+            { id: 2, client: "Lucía Fernández", service: "Balayage & Brillo Supreme", specialist: "Sofía R.", date: "2026-06-16", time: "02:00 PM", phone: "+1 555 987 6543" }
+        ];
+
+        let salonSettings = {
+            phone: "+1 (555) 389-2211",
+            address: "Calle 50 # 15-22, Local 3, Centro Comercial Bella Plaza, Ciudad",
+            schedule: "Lunes a Sábado: 9:00 AM - 8:00 PM"
+        };
+
+        /* --- ON LOAD INITIALIZATION --- */
+        window.onload = function() {
+            checkOpenStatus();
+            renderServices('todos');
+            renderGallery('todos');
+            populateBookingServiceDropdown();
+            updateContactInfoDisplay();
+        };
+
+        /* --- DARK MODE TOGGLE --- */
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            const themeIcon = document.getElementById('themeIcon');
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                themeIcon.className = "fa-solid fa-moon text-lg";
+            } else {
+                html.classList.add('dark');
+                themeIcon.className = "fa-solid fa-sun text-lg text-softGold-400";
+            }
+        }
+
+        /* --- MOBILE MENU --- */
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const icon = document.getElementById('mobileMenuIcon');
+            menu.classList.toggle('hidden');
+            if(menu.classList.contains('hidden')) {
+                icon.className = "fa-solid fa-bars text-xl";
+            } else {
+                icon.className = "fa-solid fa-xmark text-xl";
+            }
+        }
+
+        /* --- OPEN/CLOSED STATUS CHECKER --- */
+        function checkOpenStatus() {
+            const now = new Date();
+            const day = now.getDay(); // 0 is Sunday, 6 is Saturday
+            const hour = now.getHours();
+            
+            const statusDot = document.getElementById('statusDot');
+            const statusPing = document.getElementById('statusPing');
+            const statusText = document.getElementById('statusText');
+
+            // Open Mon-Sat (1-6) from 9:00 to 20:00
+            const isOpen = (day >= 1 && day <= 6) && (hour >= 9 && hour < 20);
+
+            if (isOpen) {
+                statusDot.className = "relative inline-flex rounded-full h-3 w-3 bg-green-500";
+                statusPing.className = "animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75";
+                statusText.innerText = "Abierto Ahora";
+            } else {
+                statusDot.className = "relative inline-flex rounded-full h-3 w-3 bg-red-400";
+                statusPing.className = "hidden";
+                statusText.innerText = "Cerrado en este momento";
+            }
+        }
+
+        /* --- SERVICES RENDERING & FILTERING --- */
+        function renderServices(category) {
+            const grid = document.getElementById('servicesGrid');
+            grid.innerHTML = '';
+
+            const filtered = category === 'todos' ? servicesData : servicesData.filter(s => s.category === category);
+
+            filtered.forEach(service => {
+                const card = document.createElement('div');
+                card.className = "p-6 rounded-3xl bg-white dark:bg-darkNeo-800 border border-pastelPink-200 dark:border-darkNeo-700 shadow-sm hover:shadow-md transition flex flex-col justify-between";
+                card.innerHTML = `
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-[11px] font-semibold uppercase tracking-wider px-3 py-1 rounded-full bg-pastelPink-100 dark:bg-darkNeo-700 text-pastelPink-600 dark:text-pastelPink-300">${service.category}</span>
+                            <span class="text-xs font-medium text-gray-500 dark:text-gray-400"><i class="fa-regular fa-clock mr-1"></i>${service.time}</span>
+                        </div>
+                        <h3 class="font-serif font-bold text-lg mb-2">${service.name}</h3>
+                        <p class="text-xs text-gray-600 dark:text-gray-300 mb-6">${service.desc}</p>
+                    </div>
+                    <div class="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-darkNeo-700">
+                        <span class="text-xl font-bold text-pastelPink-600 dark:text-pastelPink-400">${service.price}</span>
+                        <button onclick="openBookingModalForService('${service.name}')" class="px-4 py-2 rounded-full bg-pastelPink-500 hover:bg-pastelPink-600 text-white text-xs font-semibold shadow transition">
+                            Agendar
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function filterServices(category) {
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.className = "tab-btn px-4 py-2 rounded-full text-xs font-semibold transition bg-gray-100 dark:bg-darkNeo-700 hover:bg-pastelPink-100 dark:hover:bg-darkNeo-600 text-gray-700 dark:text-gray-300";
+            });
+            event.target.className = "tab-btn active px-4 py-2 rounded-full text-xs font-semibold transition bg-pastelPink-500 text-white shadow-sm";
+            renderServices(category);
+        }
+
+        function populateBookingServiceDropdown() {
+            const select = document.getElementById('bookingService');
+            select.innerHTML = '';
+            servicesData.forEach(s => {
+                const opt = document.createElement('option');
+                opt.value = s.name;
+                opt.innerText = `${s.name} (${s.price})`;
+                select.appendChild(opt);
+            });
+        }
+
+        /* --- GALLERY RENDERING & LIGHTBOX --- */
+        function renderGallery(category) {
+            const grid = document.getElementById('galleryGrid');
+            grid.innerHTML = '';
+
+            const filtered = category === 'todos' ? galleryData : galleryData.filter(g => g.category === category);
+
+            filtered.forEach(item => {
+                const div = document.createElement('div');
+                div.className = "group relative aspect-[4/5] rounded-3xl overflow-hidden shadow-md cursor-pointer bg-gray-100 dark:bg-darkNeo-800";
+                div.onclick = () => openLightbox(item.url, item.caption);
+                div.innerHTML = `
+                    <img src="${item.url}" alt="${item.caption}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://placehold.co/600x800/fbe8ec/e05978?text=Aura+Belleza'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-4">
+                        <p class="text-white text-xs font-medium">${item.caption}</p>
+                    </div>
+                `;
+                grid.appendChild(div);
+            });
+        }
+
+        function filterGallery(category) {
+            document.querySelectorAll('.gal-tab-btn').forEach(btn => {
+                btn.className = "gal-tab-btn px-3.5 py-1.5 rounded-full text-xs font-semibold transition bg-white dark:bg-darkNeo-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-darkNeo-700";
+            });
+            event.target.className = "gal-tab-btn active px-3.5 py-1.5 rounded-full text-xs font-semibold transition bg-pastelPink-500 text-white shadow-sm";
+            renderGallery(category);
+        }
+
+        function openLightbox(url, caption) {
+            document.getElementById('lightboxImg').src = url;
+            document.getElementById('lightboxCaption').innerText = caption;
+            document.getElementById('lightboxModal').classList.remove('hidden');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightboxModal').classList.add('hidden');
+        }
+
+        /* --- MODAL CONTROLS (BOOKING) --- */
+        function openBookingModal() {
+            document.getElementById('bookingModal').classList.remove('hidden');
+        }
+
+        function openBookingModalForService(serviceName) {
+            openBookingModal();
+            const select = document.getElementById('bookingService');
+            select.value = serviceName;
+        }
+
+        function closeBookingModal() {
+            document.getElementById('bookingModal').classList.add('hidden');
+        }
+
+        function submitBooking(e) {
+            e.preventDefault();
+            const newAppt = {
+                id: Date.now(),
+                client: document.getElementById('clientName').value,
+                service: document.getElementById('bookingService').value,
+                specialist: document.getElementById('bookingSpecialist').value,
+                date: document.getElementById('bookingDate').value,
+                time: document.getElementById('bookingTime').value,
+                phone: document.getElementById('clientPhone').value
+            };
+            appointmentsData.push(newAppt);
+            closeBookingModal();
+            document.getElementById('bookingForm').reset();
+            showToast("¡Cita reservada con éxito! Te contactaremos pronto.", "success");
+        }
+
+        /* --- OWNER / ADMIN PANEL LOGIC --- */
+        function openOwnerLogin() {
+            document.getElementById('ownerLoginModal').classList.remove('hidden');
+        }
+
+        function closeOwnerLogin() {
+            document.getElementById('ownerLoginModal').classList.add('hidden');
+            document.getElementById('ownerPin').value = '';
+        }
+
+        function handleOwnerLogin(e) {
+            e.preventDefault();
+            const pin = document.getElementById('ownerPin').value;
+            if (pin === '1234') {
+                closeOwnerLogin();
+                openOwnerDashboard();
+                showToast("Acceso de Propietario Autorizado", "success");
+            } else {
+                showToast("PIN incorrecto. Intente con 1234", "error");
+            }
+        }
+
+        function openOwnerDashboard() {
+            document.getElementById('ownerDashboardModal').classList.remove('hidden');
+            renderAdminCitas();
+            renderAdminServices();
+            renderAdminGallery();
+            loadSettingsToForm();
+        }
+
+        function closeOwnerDashboard() {
+            document.getElementById('ownerDashboardModal').classList.add('hidden');
+        }
+
+        function switchDashTab(tabName) {
+            ['citas', 'servicios', 'galeria', 'ajustes'].forEach(t => {
+                document.getElementById(`dashContent${t.charAt(0).toUpperCase() + t.slice(1)}`).classList.add('hidden');
+                document.getElementById(`dashTab${t.charAt(0).toUpperCase() + t.slice(1)}`).className = "py-3 border-b-2 border-transparent text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 whitespace-nowrap";
+            });
+            document.getElementById(`dashContent${tabName.charAt(0).toUpperCase() + tabName.slice(1)}`).classList.remove('hidden');
+            document.getElementById(`dashTab${tabName.charAt(0).toUpperCase() + tabName.slice(1)}`).className = "py-3 border-b-2 border-pastelPink-500 text-pastelPink-600 dark:text-pastelPink-400 whitespace-nowrap";
+        }
+
+        /* Admin - Citas */
+        function renderAdminCitas() {
+            const tbody = document.getElementById('dashCitasTableBody');
+            tbody.innerHTML = '';
+            document.getElementById('citasCountBadge').innerText = `${appointmentsData.length} citas`;
+
+            if (appointmentsData.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-gray-400">No hay citas registradas.</td></tr>`;
+                return;
+            }
+
+            appointmentsData.forEach(app => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="p-3 font-semibold">${app.client}</td>
+                    <td class="p-3">${app.service}</td>
+                    <td class="p-3">${app.specialist}</td>
+                    <td class="p-3">${app.date} - ${app.time}</td>
+                    <td class="p-3">${app.phone}</td>
+                    <td class="p-3">
+                        <button onclick="deleteAppointment(${app.id})" class="text-red-500 hover:text-red-700 p-1"><i class="fa-solid fa-trash"></i></button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function deleteAppointment(id) {
+            appointmentsData = appointmentsData.filter(a => a.id !== id);
+            renderAdminCitas();
+            showToast("Cita eliminada correctamente", "success");
+        }
+
+        /* Admin - Servicios */
+        function renderAdminServices() {
+            const list = document.getElementById('dashServicesList');
+            list.innerHTML = '';
+
+            servicesData.forEach(s => {
+                const div = document.createElement('div');
+                div.className = "p-3 rounded-2xl bg-gray-50 dark:bg-darkNeo-900 border border-gray-200 dark:border-darkNeo-700 flex items-center justify-between text-xs";
+                div.innerHTML = `
+                    <div>
+                        <p class="font-bold">${s.name} <span class="text-pastelPink-500 ml-1">(${s.price})</span></p>
+                        <p class="text-[10px] text-gray-500">${s.category} • ${s.time}</p>
+                    </div>
+                    <button onclick="deleteService(${s.id})" class="text-red-500 hover:text-red-700 p-1.5"><i class="fa-solid fa-trash"></i></button>
+                `;
+                list.appendChild(div);
+            });
+        }
+
+        function addNewService(e) {
+            e.preventDefault();
+            const newS = {
+                id: Date.now(),
+                name: document.getElementById('newServName').value,
+                category: document.getElementById('newServCat').value,
+                price: document.getElementById('newServPrice').value,
+                time: document.getElementById('newServTime').value,
+                desc: "Tratamiento especializado de alta calidad."
+            };
+            servicesData.push(newS);
+            renderAdminServices();
+            renderServices('todos');
+            populateBookingServiceDropdown();
+            e.target.reset();
+            showToast("Servicio agregado con éxito", "success");
+        }
+
+        function deleteService(id) {
+            servicesData = servicesData.filter(s => s.id !== id);
+            renderAdminServices();
+            renderServices('todos');
+            populateBookingServiceDropdown();
+            showToast("Servicio eliminado", "success");
+        }
+
+        /* Admin - Galería */
+        function renderAdminGallery() {
+            const grid = document.getElementById('dashGalleryGrid');
+            grid.innerHTML = '';
+
+            galleryData.forEach(g => {
+                const div = document.createElement('div');
+                div.className = "relative aspect-square rounded-xl overflow-hidden group border border-gray-200 dark:border-darkNeo-700";
+                div.innerHTML = `
+                    <img src="${g.url}" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/300x300/fbe8ec/e05978?text=Foto'">
+                    <button onclick="deleteGalleryItem(${g.id})" class="absolute top-2 right-2 w-7 h-7 rounded-full bg-red-500 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition shadow"><i class="fa-solid fa-trash text-xs"></i></button>
+                `;
+                grid.appendChild(div);
+            });
+        }
+
+        function addNewGalleryItem(e) {
+            e.preventDefault();
+            const newG = {
+                id: Date.now(),
+                category: document.getElementById('newGalCat').value,
+                url: document.getElementById('newGalImgUrl').value,
+                caption: "Nuevo trabajo en salón"
+            };
+            galleryData.push(newG);
+            renderAdminGallery();
+            renderGallery('todos');
+            e.target.reset();
+            showToast("Imagen subida a galería", "success");
+        }
+
+        function deleteGalleryItem(id) {
+            galleryData = galleryData.filter(g => g.id !== id);
+            renderAdminGallery();
+            renderGallery('todos');
+            showToast("Imagen eliminada", "success");
+        }
+
+        /* Admin - Ajustes */
+        function loadSettingsToForm() {
+            document.getElementById('settingPhone').value = salonSettings.phone;
+            document.getElementById('settingAddress').value = salonSettings.address;
+            document.getElementById('settingScheduleText').value = salonSettings.schedule;
+        }
+
+        function saveSettings(e) {
+            e.preventDefault();
+            salonSettings.phone = document.getElementById('settingPhone').value;
+            salonSettings.address = document.getElementById('settingAddress').value;
+            salonSettings.schedule = document.getElementById('settingScheduleText').value;
+
+            updateContactInfoDisplay();
+            showToast("Horarios y contacto actualizados", "success");
+        }
+
+        function updateContactInfoDisplay() {
+            document.getElementById('infoAddress').innerText = salonSettings.address;
+            document.getElementById('infoPhone').innerText = salonSettings.phone;
+            document.getElementById('infoSchedule').innerText = salonSettings.schedule;
+            document.getElementById('whatsappHeroBtn').href = `https://wa.me/${salonSettings.phone.replace(/[^0-9]/g, '')}?text=Hola,%20quisiera%20más%20información%20sobre%20sus%20servicios.`;
+            document.getElementById('whatsappContactBtn').href = `https://wa.me/${salonSettings.phone.replace(/[^0-9]/g, '')}`;
+        }
+
+        /* --- TOAST NOTIFICATION UTILITY --- */
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('notificationToast');
+            const msg = document.getElementById('toastMessage');
+            const icon = document.getElementById('toastIcon');
+
+            msg.innerText = message;
+            if (type === 'success') {
+                icon.className = "fa-solid fa-circle-check text-green-400";
+            } else {
+                icon.className = "fa-solid fa-circle-exclamation text-red-400";
+            }
+
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3500);
+        }
+    </script>
+</body>
+</html>
